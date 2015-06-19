@@ -2,19 +2,19 @@
 
 include_once 'Model/ClienteModel.php';
 
-class UsuarioController {
+class ClienteController {
 
     private $clienteModel;
 
     public function login() {
         
         if(isset($_POST['username']) && isset($_POST['senha'])) {
-            $usuarioModel = new UsuarioModel();
-            $usuarioModel->setUsername($_POST['username']);
-            $usuarioModel->setSenha($_POST['senha']);
+            $clienteModel = new UsuarioModel();
+            $clienteModel->setUsername($_POST['username']);
+            $clienteModel->setSenha($_POST['senha']);
             
-            $usuario = $usuarioModel->verificarLogin();
-            if($usuario){
+            $cliente = $clienteModel->verificarLogin();
+            if($cliente){
                 header("location: index.php?controller=UsuarioController&action=listar");
             }else{
                 echo $msg = "nao e posivel acceder";
@@ -27,12 +27,12 @@ class UsuarioController {
         $msg = FALSE;
         
         if(isset($_POST['username'])){
-            $usuarioModel = new UsuarioModel();
-            $usuarioModel->setUsername($_POST['username']);
-            $usuarioModel->setEmail($_POST['email']);
-            $usuarioModel->setSenha($_POST['senha']);
+            $clienteModel = new UsuarioModel();
+            $clienteModel->setUsername($_POST['username']);
+            $clienteModel->setEmail($_POST['email']);
+            $clienteModel->setSenha($_POST['senha']);
             
-            if($usuarioModel->insert()) {
+            if($clienteModel->insert()) {
                  $msg = "Registro cadastrado com sucesso!";
             } else {
                 $msg = "Erro ao cadastrar!";
@@ -40,6 +40,6 @@ class UsuarioController {
                        
         }
         
-        include('View/Usuario/inserir.php');
+        include('View/Site/inserirCliente.php');
     }
 }

@@ -82,7 +82,7 @@
 				
 
 				<div class="well">
-					<form class="form login-form">
+					<form class="form login-form" method="POST" action="">
 						<h2>Sign in</h2>
 						<div>
 							<label>Username</label>
@@ -100,7 +100,7 @@
 							<button type="submit" class="btn btn-success">Login</button>
 						</div>
 						<br />
-						<a href="#">register</a>&nbsp;&#124;&nbsp;<a href="#">forgot password?</a>
+						<a href="index.php?controller=ClienteController&action=inserir">register</a>&nbsp;&#124;&nbsp;<a href="#">forgot password?</a>
 					</form>
 				</div>
 			</div>
