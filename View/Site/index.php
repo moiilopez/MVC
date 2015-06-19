@@ -82,7 +82,7 @@
 				
 
 				<div class="well">
-					<form class="form login-form" method="POST" action="">
+					<form class="form login-form" method="POST" action="index.php?controller=ClienteController&action=login">
 						<h2>Sign in</h2>
 						<div>
 							<label>Username</label>
