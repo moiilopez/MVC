@@ -45,38 +45,12 @@
 
 				<div class="well">
 					<ul class="nav nav-list">
-						<li class="nav-header">Sidebar</li>
-						<li class="active">
-							<a href="#">Link</a>
-						</li>
+						
+                                            <?php foreach ($categorias as $cat):?>
 						<li>
-							<a href="#">Link</a>
+                                                    <a href="#"><?php echo $cat['NOME'];?></a>
 						</li>
-						<li>
-							<a href="#">Link</a>
-						</li>
-
-						<li class="nav-header">Sidebar</li>
-						<li>
-							<a href="#">Link</a>
-						</li>
-						<li>
-							<a href="#">Link</a>
-						</li>
-						<li>
-							<a href="#">Link</a>
-						</li>
-
-						<li class="nav-header">Sidebar</li>
-						<li>
-							<a href="#">Link</a>
-						</li>
-						<li>
-							<a href="#">Link</a>
-						</li>
-						<li>
-							<a href="#">Link</a>
-						</li>
+                                            <?php endforeach;?>   
 					</ul>
 				</div>
 
@@ -109,7 +83,7 @@
 			<div class="span9">
 		
 				<ul class="thumbnails">
-                                    <?php //var_dump($produtos);?>
+                                    <?php //    var_dump($categorias);?>
                                     <?php foreach ($produtos as $pro):?>
 					<li class="span3">
 						<div class="thumbnail">
