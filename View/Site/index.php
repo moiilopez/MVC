@@ -31,6 +31,7 @@
 					<form class="navbar-form form-search pull-right">
 						<input id="Search" name="Search" type="text" placeholder="type text to search for" class="input-medium search-query">
 						<button type="submit" class="btn">Search</button>
+                                                <a href="index.php?controller=UsuarioController&action=login"<button class="btn btn-primary">Admin</button></a>
 					</form>
 				</div>
 			</div>
@@ -86,10 +87,10 @@
 						<h2>Sign in</h2>
 						<div>
 							<label>Username</label>
-							<input id="Username" name="Username" type="text" style="width:100px" />
+							<input id="Username" name="username" type="text" style="width:100px" />
 
 							<label>Password</label>
-							<input id="Password" name="Password" type="password" style="width:100px"/>
+							<input id="Password" name="senha" type="password" style="width:100px"/>
 
 							<label class="checkbox inline">
 								<input type="checkbox" id="RememberMe" value="option1" > Remember me

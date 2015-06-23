@@ -9,7 +9,7 @@ class ClienteController {
     public function login() {
         
         if(isset($_POST['username']) && isset($_POST['senha'])) {
-            $clienteModel = new UsuarioModel();
+            $clienteModel = new ClienteModel();
             $clienteModel->setUsername($_POST['username']);
             $clienteModel->setSenha($_POST['senha']);
             
@@ -20,14 +20,14 @@ class ClienteController {
                 echo $msg = "nao e posivel acceder";
             }
         }
-        include ('View/Usuario/login.php');    
+        include ('View/Site/index.php');    
     }
     
     public function inserir() {
         $msg = FALSE;
         
         if(isset($_POST['username'])){
-            $clienteModel = new UsuarioModel();
+            $clienteModel = new ClienteModel();
             $clienteModel->setUsername($_POST['username']);
             $clienteModel->setEmail($_POST['email']);
             $clienteModel->setSenha($_POST['senha']);

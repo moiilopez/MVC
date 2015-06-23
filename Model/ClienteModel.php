@@ -51,7 +51,7 @@ class ClienteModel extends Model {
      * @return void
      */
     public function insert() {
-        $stmt = $this->conexao->prepare("INSERT INTO usuario(username, senha, email) VALUES (:username, :senha, :email)");
+        $stmt = $this->conexao->prepare("INSERT INTO cliente(username, senha, email) VALUES (:username, :senha, :email)");
         
         $stmt->bindValue(':username', $this->getUsername());
         $stmt->bindValue(':senha', $this->getSenha());
@@ -67,7 +67,7 @@ class ClienteModel extends Model {
      * @return array
      */
     public function select() {
-        $stmt = $this->conexao->prepare("SELECT * FROM usuario");
+        $stmt = $this->conexao->prepare("SELECT * FROM cliente");
         $stmt->execute();
 
         return $stmt->fetchAll();
@@ -80,7 +80,7 @@ class ClienteModel extends Model {
      * @return array
      */
     public function selectById() {
-        $stmt = $this->conexao->prepare("SELECT * FROM usuario where ID = :id");
+        $stmt = $this->conexao->prepare("SELECT * FROM cliente where ID = :id");
         $stmt->bindValue(':id', $this->getId());
         
         $stmt->execute();
@@ -89,7 +89,7 @@ class ClienteModel extends Model {
     }
     
     public function update() {
-        $stmt = $this->conexao->prepare("UPDATE  usuario SET username = :username, senha = :senha, email = :email  WHERE id = :id ");
+        $stmt = $this->conexao->prepare("UPDATE  cliente SET username = :username, senha = :senha, email = :email  WHERE id = :id ");
        
         $stmt->bindValue(':id', $this->getId());
         $stmt->bindValue(':username', $this->getUsername());
@@ -101,7 +101,7 @@ class ClienteModel extends Model {
     
     
     public function delete() {
-        $stmt = $this->conexao->prepare("DELETE FROM usuario WHERE ID = :id ");
+        $stmt = $this->conexao->prepare("DELETE FROM cliente WHERE ID = :id ");
        
         $stmt->bindValue(':id', $this->getId());
         
@@ -111,7 +111,7 @@ class ClienteModel extends Model {
     
     
     public function orderbyUsername() {
-        $stmt = $this->conexao->prepare("SELECT * FROM usuario order by username; ");
+        $stmt = $this->conexao->prepare("SELECT * FROM cliente order by username; ");
        
        $stmt->execute();
         
@@ -119,7 +119,7 @@ class ClienteModel extends Model {
     }
     
    public function orderbyEmail() {
-        $stmt = $this->conexao->prepare("SELECT * FROM usuario order by email; ");
+        $stmt = $this->conexao->prepare("SELECT * FROM cliente order by email; ");
        
        $stmt->execute();
         
@@ -127,7 +127,7 @@ class ClienteModel extends Model {
     }
    
     public function verificarLogin() {
-       $stmt = $this->conexao->prepare("SELECT * FROM usuario WHERE username = :username && senha = :senha ");
+       $stmt = $this->conexao->prepare("SELECT * FROM cliente WHERE username = :username && senha = :senha ");
        $stmt->bindValue(':username', $this->getUsername());
        $stmt->bindValue(':senha', $this->getUsername());
        $stmt->execute();

@@ -31,6 +31,7 @@
 					<form class="navbar-form form-search pull-right">
 						<input id="Search" name="Search" type="text" placeholder="type text to search for" class="input-medium search-query">
 						<button type="submit" class="btn">Search</button>
+                                                <a href="index.php?controller=UsuarioController&action=login"<button class="btn btn-primary">Admin</button></a>
 					</form>
 				</div>
 			</div>
