@@ -17,11 +17,12 @@ class ClienteController {
 
             $_SESSION["cliente"] = $clienteModel->verificarLogin();
             
-            if($_SESSION["autenticar"]){
+            if($_SESSION["cliente"]){
+
                 header("location: index.php");
             }
         }
-        include ('View/Site/index.php');    
+        header("location: index.php");   
     }
     
     public function inserir() {

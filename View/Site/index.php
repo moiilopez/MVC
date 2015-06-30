@@ -24,8 +24,9 @@
 
                         <a class="brand" href="index.php">E-COMMERCE</a>
 			<?php
+                        
                         $user = "";
-                        if(isset($_SESSION['cliente'])):
+                        if(isset($_SESSION["cliente"]) && $_SESSION["cliente"] != FALSE):
                             $user = 'Usuario Logado';
                         ?>	
                             <div class="nav-collapse collapse">
@@ -107,7 +108,7 @@
                                                             <h4><?php echo $pro['NOME'];?></h4>
 								<p>Preço: <?php echo $pro['PRECO'];?></p>
 								<a class="btn btn-primary" href="index.php?controller=SiteController&action=produto&id=<?php echo $pro['ID'];?>">Ver</a>
-								<a class="btn btn-success" href="#">Adicionar ao Carrinho</a>
+								<a class="btn btn-success" href="index.php?controller=SiteController&action=carrinho&id=<?php echo $pro['ID'];?>">Adicionar ao Carrinho</a>
 							</div>
 						</div>
 					</li>

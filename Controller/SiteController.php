@@ -38,4 +38,20 @@ class SiteController {
         
         include 'View/Site/produto.php';
     }
+    
+    function carrinho(){
+        
+        if(isset($_GET['id'])){
+            $_SESSION['carrinho']['produtos'][$_GET['id']] = 1;
+        }
+                    
+        $produtoModel = new ProdutoModel();
+        //$produtoModel->setId($_GET['id']);
+        $produtos = $produtoModel->selectProdutosCarrinho();
+        
+        $categoriaModel = new CategoriaModel();
+        $categorias = $categoriaModel->select();
+        
+        include 'View/Site/carrinho.php';
+    }
 }

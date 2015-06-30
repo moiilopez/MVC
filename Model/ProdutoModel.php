@@ -155,6 +155,26 @@ class ProdutoModel extends Model {
         
         return $stmt->fetchAll();
     }
+    
+    public function selectProdutosCarrinho() {
+        
+        if(!$_SESSION['carrinho']['produtos']){
+            return NULL;
+        } 
+                
+        $prdutosIds = '';                
+        foreach (!$_SESSION['carrinho']['produtos'] as $produto => $prod){
+            $produtosIds .= $produto . ',';
+        }
+        
+        $produtosIds = substr($produtosIds, 0, strlen($produtosIds)-1);
+        
+        $sql = "SELECT * FROM PRODUTO WHERE ID IN {$produtosIds}";
+        $stmt = $this->conexao->prepare($sql);
+        $stmt->execute();
+        
+        return $stmt->fetchAll();
+    }
 
 }
 
