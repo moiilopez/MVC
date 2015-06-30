@@ -27,3 +27,7 @@ button,input{*overflow:visible;line-height:normal}button::-moz-focus-inner,input
 #edit{
     margin-top: 60px;
 }
+#edit2{
+    margin-top: 90px;
+    text-align: right;
+}

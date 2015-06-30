@@ -86,7 +86,7 @@
                                                 <th>Preço</th>
                                                 <th>Custo</th>
                                                 <th>Quantidade</th>
-                                                <th>IdCategoria</th>
+                                                <th>Categoria</th>
                                                 <th>Opções</th>
                                                 <th></th>
                                             </tr>
@@ -100,7 +100,7 @@
                                                     <td><?php echo $pro['PRECO'] ?></td>
                                                     <td><?php echo $pro['CUSTO'] ?></td>
                                                     <td><?php echo $pro['QUANTIDADE'] ?></td>
-                                                    <td><?php //echo $pro['IDCATEGORIA'] ?></td>
+                                                    <td><?php echo $pro['NOMECAT'] ?></td>
                                                     <td><a href="index.php?controller=ProdutoController&action=atualizar&id=<?php echo $pro['ID'] ?>">Editar</a> - 
                                                         <a href="index.php?controller=ProdutoController&action=deletar&id=<?php echo $pro['ID'] ?>">Deletar</a></td>
                                                 </tr>

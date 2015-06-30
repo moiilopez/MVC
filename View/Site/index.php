@@ -1,39 +1,54 @@
 <!DOCTYPE html>
+
 <html lang="en">
 <head>
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />	
 	<title>Ecommerce</title>
 
 	<!-- Included Bootstrap CSS Files -->
-	<link rel="stylesheet" href="www/bootstrap/css/bootstrap.min.css" />
-	<link rel="stylesheet" href="www/bootstrap/css/bootstrap-responsive.min.css" />
-	
+	<link href="www/bootstrap/css/bootstrap.min.css" rel="stylesheet" media="screen">
+	<link href="www/bootstrap/css/bootstrap-responsive.min.css" rel="stylesheet" media="screen">
+	<link href="www/assets/DT_bootstrap.css" rel="stylesheet" media="screen">
 	<!-- Includes FontAwesome -->
 	<link rel="stylesheet" href=" /font-awesome.min.css" />
 
 	<!-- Css -->	
-	<link rel="stylesheet" href="www/assets/style.css" />
-
+	<link rel="stylesheet" href="www/assets/style.css"  media="screen"/>
+        <script src="www/vendors/modernizr-2.6.2-respond-1.1.0.min.js"></script>
 </head>
 <body>
 
-	<div class="navbar navbar-inverse navbar-fixed-top">
+	<div class="navbar navbar-fixed-top">
 		<div class="navbar-inner">
-                    <div class="container">
-				<button class="btn btn-navbar" data-target=".nav-collapse" data-toggle="collapse" type="button">
-					<span class="icon-bar"></span>
-					<span class="icon-bar"></span>
-					<span class="icon-bar"></span>
-				</button>
-				<a class="brand" href="/">E-COMMERCE</a>
-				<div class="nav-collapse collapse">
-					
-					<form class="navbar-form form-search pull-right">
-						<input id="Search" name="Search" type="text" placeholder="type text to search for" class="input-medium search-query">
-						<button type="submit" class="btn">Search</button>
-                                                <a href="index.php?controller=UsuarioController&action=login"<button class="btn btn-primary">Admin</button></a>
-					</form>
-				</div>
+                    <div class="container-fluid">
+
+                        <a class="brand" href="index.php">E-COMMERCE</a>
+			<?php
+                        $user = "";
+                        if(isset($_SESSION['cliente'])):
+                            $user = 'Usuario Logado';
+                        ?>	
+                            <div class="nav-collapse collapse">
+                                    <ul class="nav pull-right">
+                                        <li class="dropdown">
+                                            <a href="#" role="button" class="dropdown-toggle" data-toggle="dropdown"> <i class="icon-user"></i><?php echo $user;?><i class="caret"></i>
+                                            </a>
+                                            <ul class="dropdown-menu">
+                                                <li>
+                                                    <a tabindex="-1" href="#">Logout</a>
+                                                </li>
+                                            </ul>
+                                        </li>
+                                    </ul>
+                            </div>
+                        <?php endif;?>
+                            <form class="navbar-form form-search pull-right">
+                                	<input id="Search" name="Search" type="text" placeholder="type text to search for" class="input-medium search-query">
+					<button type="submit" class="btn"><i class="icon-search"></i> Search</button>
+                                        <a href="index.php?controller=UsuarioController&action=login"<button class="btn btn-primary"><i class="icon-user"></i> Admin</button></a>
+                                                
+                            </form>
+				
 			</div>
 		</div>
 	</div>
@@ -45,10 +60,10 @@
 
 				<div class="well">
 					<ul class="nav nav-list">
-						
+                                            
                                             <?php foreach ($categorias as $cat):?>
 						<li>
-                                                    <a href="#"><?php echo $cat['NOME'];?></a>
+                                                    <a href="index.php?controller=SiteController&action=clasificar&categoria=<?php echo $cat['ID'];?>"><?php echo $cat['NOME'];?></a>
 						</li>
                                             <?php endforeach;?>   
 					</ul>
@@ -91,8 +106,8 @@
 							<div class="caption">
                                                             <h4><?php echo $pro['NOME'];?></h4>
 								<p>Preço: <?php echo $pro['PRECO'];?></p>
-								<a class="btn btn-primary" href="#">View</a>
-								<a class="btn btn-success" href="#">Add to Cart</a>
+								<a class="btn btn-primary" href="index.php?controller=SiteController&action=produto&id=<?php echo $pro['ID'];?>">Ver</a>
+								<a class="btn btn-success" href="#">Adicionar ao Carrinho</a>
 							</div>
 						</div>
 					</li>
@@ -147,8 +162,16 @@
 		</div>
 	</footer>	
 
-	<script src="www/vendor/jquery-1.9.1.min.js"></script>
+	<script src="www/vendors/jquery-1.9.1.min.js"></script>
 	<script src="www/bootstrap/js/bootstrap.min.js"></script>
+        <script src="www/vendors/datatables/js/jquery.dataTables.min.js"></script>
 
+        <script src="www/assets/scripts.js"></script>
+        <script src="www/assets/DT_bootstrap.js"></script>
+        <script>
+            $(function () {
+
+            });
+        </script>
 </body>
 </html>

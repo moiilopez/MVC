@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />	
-	<title>Cadastro de cliente</title>
+	<title>Ecommerce</title>
 
 	<!-- Included Bootstrap CSS Files -->
 	<link rel="stylesheet" href="www/bootstrap/css/bootstrap.min.css" />
@@ -19,14 +19,14 @@
 
 	<div class="navbar navbar-fixed-top">
 		<div class="navbar-inner">
-                        <div class="container">
+                    <div class="container">
 				<button class="btn btn-navbar" data-target=".nav-collapse" data-toggle="collapse" type="button">
 					<span class="icon-bar"></span>
 					<span class="icon-bar"></span>
 					<span class="icon-bar"></span>
 				</button>
-                                <a class="brand" href="index.php">E-COMMERCE</a>
-                                <?php
+                        <a class="brand" href="index.php">E-COMMERCE</a>
+                        <?php
                         $user = "";
                         if(isset($_SESSION['cliente'])):
                             $user = 'Usuario Logado';
@@ -48,12 +48,11 @@
 				<div class="nav-collapse collapse">
 					
 					<form class="navbar-form form-search pull-right">
-						<input id="Search" name="Search" type="text" placeholder="Insira aqui sua busca..." class="input-medium search-query">
-                                                <button type="submit" class="btn">Busca</button>
+						<input id="Search" name="Search" type="text" placeholder="type text to search for" class="input-medium search-query">
+						<button type="submit" class="btn">Search</button>
                                                 <a href="index.php?controller=UsuarioController&action=login"<button class="btn btn-primary">Admin</button></a>
 					</form>
 				</div>
-                                
 			</div>
 		</div>
 	</div>
@@ -61,15 +60,30 @@
 	<div class="container"  id="edit">
 		<div class="row">
 			<div class="span3">
-                                <div class="well" id="edit">
-					<form class="form login-form">
+	
+
+				<div class="well">
+					<ul class="nav nav-list">
+                                            
+                                            <?php foreach ($categorias as $cat):?>
+						<li>
+                                                    <a href="index.php?controller=SiteController&action=clasificar&categoria=<?php echo $cat['ID'];?>"><?php echo $cat['NOME'];?></a>
+						</li>
+                                            <?php endforeach;?>   
+					</ul>
+				</div>
+
+				
+
+				<div class="well">
+					<form class="form login-form" method="POST" action="index.php?controller=ClienteController&action=login">
 						<h2>Sign in</h2>
 						<div>
 							<label>Username</label>
-							<input id="Username" name="Username" type="text" style="width:100px" />
+							<input id="Username" name="username" type="text" style="width:100px" />
 
 							<label>Password</label>
-							<input id="Password" name="Password" type="password" style="width:100px"/>
+							<input id="Password" name="senha" type="password" style="width:100px"/>
 
 							<label class="checkbox inline">
 								<input type="checkbox" id="RememberMe" value="option1" > Remember me
@@ -84,62 +98,28 @@
 					</form>
 				</div>
 			</div>
-                        
-                    <div class="span9" id="edit">	
-                            
-                            <div class="row-fluid">
-                        <!-- block -->
-                        <div class="block">
-                            <div class="navbar navbar-inner block-header">
-                                <div class="muted pull-left">Cadastro de Cliente</div>
-                            </div>
-                            <div class="block-content collapse in">
-                                <div class="span12">
-                                    <form action="index.php?controller=ClienteController&action=inserir" method="POST" class="form-horizontal">
-                                        <fieldset>
 
-                                            <?php if ($msg) : ?>
-                                                <div class="alert alert-info">
-                                                    <button class="close" data-dismiss="alert">x</button>
-                                                    <strong>Info!</strong> <?php echo $msg ?>
-                                                </div>
-                                            <?php endif; ?>
-
-                                            <div class="control-group">
-                                                <label class="control-label" for="username">Username</label>
-                                                <div class="controls">
-                                                    <input class="input-xlarge focused" id="username" type="text" value="" name="username">
-                                                </div>
-                                            </div>
-
-                                            <div class="control-group">
-                                                <label class="control-label" for="senha">Senha</label>
-                                                <div class="controls">
-                                                    <input class="input-xlarge focused" id="senha" type="password" value="" name="senha">
-                                                </div>
-                                            </div>
-
-                                            <div class="control-group">
-                                                <label class="control-label" for="email">E-mail</label>
-                                                <div class="controls">
-                                                    <input class="input-xlarge focused" id="email" type="text" value="" name="email">
-                                                </div>
-                                            </div>
-
-                                            <div class="form-actions">
-                                                <button type="submit" class="btn btn-primary">Salvar</button>
-                                                <button type="reset" class="btn">Cancel</button>
-                                            </div>
-                                        </fieldset>
-                                    </form>
-
-                                </div>
-                            </div>
-                        </div>
-                        <!-- /block -->
-                    </div>
-                            
+                        <div class="span6" id="edit">
+				<ul class="thumbnails">
+                                    <?php //    var_dump($categorias);?>
+                                    
+					<li class="span6">
+						<div class="thumbnail">
+							<img src="http://placehold.it/520x400" alt="">
+						</div>
+					</li>
+                                    
+				</ul>
 			</div>
+                        <div class="span2" id="edit2">
+
+                                <div class="caption">
+                                    <h1><?php echo $produtos['NOME'];?></h1>
+                                    <p>R$: <?php echo $produtos['PRECO'];?></p>
+                                    <a class="btn btn-success" href="#">Adicionar ao carrinho</a>
+                                </div>
+
+                        </div>
 		</div>
 	</div>
 	

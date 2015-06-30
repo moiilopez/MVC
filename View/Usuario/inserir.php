@@ -75,7 +75,7 @@
                             </div>
                             <div class="block-content collapse in">
                                 <div class="span12">
-                                    <form action="index.php?controller=UsuarioController&action=inserir" method="POST" class="form-horizontal">
+                                    <form action="" method="POST" class="form-horizontal">
                                         <fieldset>
 
                                             <?php if ($msg) : ?>
@@ -88,21 +88,21 @@
                                             <div class="control-group">
                                                 <label class="control-label" for="username">Username</label>
                                                 <div class="controls">
-                                                    <input class="input-xlarge focused" id="username" type="text" value="" name="username">
+                                                    <input class="input-xlarge focused" id="username" type="text" value="" name="username" required>
                                                 </div>
                                             </div>
 
                                             <div class="control-group">
                                                 <label class="control-label" for="senha">Senha</label>
                                                 <div class="controls">
-                                                    <input class="input-xlarge focused" id="senha" type="text" value="" name="senha">
+                                                    <input class="input-xlarge focused" id="senha" type="password" value="" name="senha" required>
                                                 </div>
                                             </div>
 
                                             <div class="control-group">
                                                 <label class="control-label" for="email">E-mail</label>
                                                 <div class="controls">
-                                                    <input class="input-xlarge focused" id="email" type="text" value="" name="email">
+                                                    <input class="input-xlarge focused" id="email" type="text" value="" name="email" required>
                                                 </div>
                                             </div>
 

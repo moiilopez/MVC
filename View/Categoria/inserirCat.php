@@ -75,7 +75,7 @@
                             </div>
                             <div class="block-content collapse in">
                                 <div class="span12">
-                                    <form action="index.php?controller=CategoriaController&action=inserir" method="POST" class="form-horizontal">
+                                    <form action="" method="POST" class="form-horizontal">
                                         <fieldset>
 
                                             <?php if ($msg) : ?>
@@ -88,7 +88,7 @@
                                             <div class="control-group">
                                                 <label class="control-label" for="username">Nome</label>
                                                 <div class="controls">
-                                                    <input class="input-xlarge focused" id="nome" type="text" value="" name="nome">
+                                                    <input class="input-xlarge focused" id="nome" type="text" value="" name="nome" required>
                                                 </div>
                                             </div>
 

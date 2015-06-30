@@ -13,11 +13,13 @@ class UsuarioController {
             $usuarioModel->setUsername($_POST['username']);
             $usuarioModel->setSenha($_POST['senha']);
             
-            $usuario = $usuarioModel->verificarLogin();
-            if($usuario){
+            session_start();
+
+            $_SESSION["usuario"] = $usuarioModel->verificarLogin();
+            if($_SESSION["usuario"]){
                 header("location: index.php?controller=UsuarioController&action=listar");
             }else{
-                echo $msg = "nao e posivel acceder";
+                $msg = "nao e posivel acceder";
             }
         }
         include ('View/Usuario/login.php');    

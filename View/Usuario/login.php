@@ -14,6 +14,13 @@
   </head>
   <body id="login">
     <div class="container">
+        
+        <?php if (isset($msg)) : ?>
+            <div class="alert alert-danger">
+                <button class="close" data-dismiss="alert">x</button>
+                <strong>Info!</strong> <?php echo $msg ?>
+            </div>
+        <?php endif; ?>
 
         <form class="form-signin" method="POST" action="">
         <h2 class="form-signin-heading">Login</h2>

@@ -13,11 +13,12 @@ class ClienteController {
             $clienteModel->setUsername($_POST['username']);
             $clienteModel->setSenha($_POST['senha']);
             
-            $cliente = $clienteModel->verificarLogin();
-            if($cliente){
-                header("location: index.php?controller=UsuarioController&action=listar");
-            }else{
-                echo $msg = "nao e posivel acceder";
+            session_start();
+
+            $_SESSION["cliente"] = $clienteModel->verificarLogin();
+            
+            if($_SESSION["autenticar"]){
+                header("location: index.php");
             }
         }
         include ('View/Site/index.php');    

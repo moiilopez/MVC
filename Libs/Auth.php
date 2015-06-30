@@ -2,8 +2,8 @@
 
 class Auth {
     static function bloquearAcesso(){
-        if(isset($_SESSION['login'])){
-            header('Location: index.php');
+        if(!isset($_SESSION['usuario'])){
+            header('Location: index.php?controller=UsuarioController&action=Login');
         }
     }
 }

@@ -84,6 +84,20 @@
                                     <form action="" method="POST" class="form-horizontal">
                                         <fieldset>
                                             <div class="control-group">
+                                                <label class="control-label" for="categoria">Seleccionar Categoria</label>
+                                                <div class="controls">
+                                                    <select name="categoria"  required>
+                                                        <option></option>
+                                                        <?php
+                                                        foreach ($categorias as $cat) {
+                                                            echo '<option value=' . $cat['ID'] . '>' . $cat['NOME'] . '</option>';
+                                                        }
+                                                        ?>  
+                                                    </select>
+                                                </div>
+                                            </div>
+                                            
+                                            <div class="control-group">
                                                 <label class="control-label" for="username">Nome</label>
                                                 <div class="controls">
                                                     <input class="input-xlarge focused" id="username" type="text" value="<?php echo $produtos['NOME'] ?>" name="nome">

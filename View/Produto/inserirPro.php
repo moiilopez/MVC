@@ -32,7 +32,7 @@
                                 </a>
                                 <ul class="dropdown-menu">
                                     <li>
-                                        <a tabindex="-1" href="login.html">Logout</a>
+                                        <a tabindex="-1" href="login.php">Logout</a>
                                     </li>
                                 </ul>
                             </li>
@@ -76,7 +76,7 @@
                             </div>
                             <div class="block-content collapse in">
                                 <div class="span12">
-                                    <form action="index.php?Controller=ProdutoController&action=inserir" method="POST" class="form-horizontal">
+                                    <form action="" method="POST" class="form-horizontal">
                                         <fieldset>
 
                                             <?php if ($msg) : ?>
@@ -87,37 +87,51 @@
                                             <?php endif; ?>
 
                                             <div class="control-group">
+                                                <label class="control-label" for="categoria">Seleccionar Categoria</label>
+                                                <div class="controls">
+                                                    <select name="categoria"  required>
+                                                        <option></option>
+                                                        <?php
+                                                        foreach ($categorias as $cat) {
+                                                            echo '<option value=' . $cat['ID'] . '>' . $cat['NOME'] . '</option>';
+                                                        }
+                                                        ?>  
+                                                    </select>
+                                                </div>
+                                            </div>
+                                            
+                                            <div class="control-group">
                                                 <label class="control-label" for="username">Nome</label>
                                                 <div class="controls">
-                                                    <input class="input-xlarge focused" id="username" type="text" value="" name="nome">
+                                                    <input class="input-xlarge focused" id="username" type="text" name="nome" required>
                                                 </div>
                                             </div>
 
                                             <div class="control-group">
                                                 <label class="control-label" for="senha">Descrição</label>
                                                 <div class="controls">
-                                                    <input class="input-xlarge focused" id="senha" type="text" value="" name="descricao">
+                                                    <input class="input-xlarge focused" id="senha" type="text" name="descricao" required>
                                                 </div>
                                             </div>
 
                                             <div class="control-group">
                                                 <label class="control-label" for="email">Preço</label>
                                                 <div class="controls">
-                                                    <input class="input-xlarge focused" id="email" type="text" value="" name="preco">
+                                                    <input class="input-xlarge focused" id="email" type="text" name="preco" required>
                                                 </div>
                                             </div>
                                             
                                             <div class="control-group">
                                                 <label class="control-label" for="email">Custo</label>
                                                 <div class="controls">
-                                                    <input class="input-xlarge focused" id="email" type="text" value="" name="custo">
+                                                    <input class="input-xlarge focused" id="email" type="text" name="custo" required>
                                                 </div>
                                             </div>
                                             
                                             <div class="control-group">
                                                 <label class="control-label" for="email">Quantidade</label>
                                                 <div class="controls">
-                                                    <input class="input-xlarge focused" id="email" type="text" value="" name="quantidade">
+                                                    <input class="input-xlarge focused" id="email" type="text" name="quantidade"  required>
                                                 </div>
                                             </div>
 

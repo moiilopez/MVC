@@ -16,6 +16,7 @@ class ProdutoController {
             $produtoModel->setPreco($_POST['preco']);
             $produtoModel->setCusto($_POST['custo']);
             $produtoModel->setQuantidade($_POST['quantidade']);
+            $produtoModel->setCategoria($_POST['categoria']);
             
             if($produtoModel->insert()) {
                  $msg = "Registro cadastrado com sucesso!";
@@ -24,6 +25,9 @@ class ProdutoController {
             }
                        
         }
+        
+        $categoria = new CategoriaModel();
+        $categorias = $categoria->select();
         
         include('View/Produto/inserirPro.php');
     }
@@ -69,6 +73,7 @@ class ProdutoController {
              $produtoModel->setPreco($_POST['preco']);
              $produtoModel->setCusto($_POST['custo']);
              $produtoModel->setQuantidade($_POST['quantidade']);
+             $produtoModel->setCategoria($_POST['categoria']);
          
              if ($produtoModel->update()){
                  $msg = "Registro atualizado com sucesso";
@@ -81,6 +86,10 @@ class ProdutoController {
             $produtoModel->setId($_GET['id']);
             $produtos = $produtoModel->selectById();
         }
+        
+        $categoria = new CategoriaModel();
+        $categorias = $categoria->select();
+        
          include('View/Produto/atualizarPro.php');
        // print_r($usuario);
     }

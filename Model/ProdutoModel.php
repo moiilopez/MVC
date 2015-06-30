@@ -10,6 +10,7 @@ class ProdutoModel extends Model {
     public $preco;
     private $custo;
     private $quantidade;
+    private $categoria;
             
     function getId() {
         return $this->id;
@@ -59,22 +60,36 @@ class ProdutoModel extends Model {
         $this->quantidade = $produtos;
         return $this;
     }
+    function getCategoria() {
+        return $this->categoria;
+    }
+
+    function setCategoria($produtos) {
+        $this->categoria = $produtos;
+        return $this;
+    }
 
     public function insert() {
-        $stmt = $this->conexao->prepare("INSERT INTO produto(NOME,DESCRICAO,PRECO,CUSTO,QUANTIDADE) VALUES (:nome,:descricao,:preco,:custo,:quantidade)");
+        $stmt = $this->conexao->prepare("INSERT INTO produto(NOME,DESCRICAO,PRECO,CUSTO,QUANTIDADE,CATEGORIA) VALUES (:nome,:descricao,:preco,:custo,:quantidade,:categoria)");
         
         $stmt->bindValue(':nome', $this->getNome());
         $stmt->bindValue(':descricao', $this->getDescricao());
         $stmt->bindValue(':preco', $this->getPreco());
         $stmt->bindValue(':custo', $this->getCusto());
         $stmt->bindValue(':quantidade', $this->getQuantidade());
+        $stmt->bindValue(':categoria', $this->getCategoria());
         
         return $stmt->execute();
     }
     
 
     public function select() {
-        $stmt = $this->conexao->prepare("SELECT * FROM produto");
+        $stmt = $this->conexao->prepare(
+                "SELECT produto.*, categoria.NOME AS NOMECAT  "
+                . "FROM produto "
+                . "LEFT JOIN categoria "
+                . "ON produto.CATEGORIA = categoria.ID"
+        );
         $stmt->execute();
 
         return $stmt->fetchAll();
@@ -89,8 +104,26 @@ class ProdutoModel extends Model {
         return $stmt->fetch(PDO::FETCH_ASSOC);
     }
     
+    public function selectByCodigo() {
+        $stmt = $this->conexao->prepare("SELECT * FROM produto where ID = :id");
+        $stmt->bindValue(':id', $this->id);
+        
+        $stmt->execute();
+
+        return $stmt->fetch(PDO::FETCH_ASSOC);
+    }
+    
+    public function selectByCategoria() {
+        $stmt = $this->conexao->prepare("SELECT * FROM produto where CATEGORIA = :categoria");
+        $stmt->bindValue(':categoria', $this->getCategoria());
+        
+        $stmt->execute();
+
+        return $stmt->fetchAll(PDO::FETCH_ASSOC);
+    }
+    
     public function update() {
-        $stmt = $this->conexao->prepare("UPDATE produto SET NOME = :nome, DESCRICAO = :descricao, PRECO = :preco, CUSTO = :custo, QUANTIDADE = :quantidade WHERE ID = :id ");
+        $stmt = $this->conexao->prepare("UPDATE produto SET NOME = :nome, DESCRICAO = :descricao, PRECO = :preco, CUSTO = :custo, QUANTIDADE = :quantidade, CATEGORIA = :categoria WHERE ID = :id ");
        
         $stmt->bindValue(':id', $this->getId());
         $stmt->bindValue(':nome', $this->getNome());
@@ -98,6 +131,7 @@ class ProdutoModel extends Model {
         $stmt->bindValue(':preco', $this->getPreco());
         $stmt->bindValue(':custo', $this->getCusto());
         $stmt->bindValue(':quantidade', $this->getQuantidade());
+        $stmt->bindValue(':categoria', $this->getCategoria());
         
         
         return $stmt->execute();
