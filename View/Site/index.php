@@ -61,12 +61,13 @@
 
 				<div class="well">
 					<ul class="nav nav-list">
-                                            
+                                            <li class="nav-header">Menu</li>
                                             <?php foreach ($categorias as $cat):?>
 						<li>
                                                     <a href="index.php?controller=SiteController&action=clasificar&categoria=<?php echo $cat['ID'];?>"><?php echo $cat['NOME'];?></a>
 						</li>
-                                            <?php endforeach;?>   
+                                            <?php endforeach;?>
+                                            <li class="nav-header"><a href="index.php?controller=SiteController&action=carrinho">Carrinho de Compras</a></li>
 					</ul>
 				</div>
 

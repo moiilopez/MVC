@@ -11,6 +11,7 @@ class ProdutoModel extends Model {
     private $custo;
     private $quantidade;
     private $categoria;
+    private $foto;
             
     function getId() {
         return $this->id;
@@ -68,9 +69,19 @@ class ProdutoModel extends Model {
         $this->categoria = $produtos;
         return $this;
     }
+    
+    function getFoto() {
+        return $this->foto;
+    }
+ 
+    function setFoto($foto) {
+        $this->foto = $foto;
+        return $this;
+    }
 
     public function insert() {
-        $stmt = $this->conexao->prepare("INSERT INTO produto(NOME,DESCRICAO,PRECO,CUSTO,QUANTIDADE,CATEGORIA) VALUES (:nome,:descricao,:preco,:custo,:quantidade,:categoria)");
+        $stmt = $this->conexao->prepare("INSERT INTO produto(NOME,DESCRICAO,PRECO,CUSTO,QUANTIDADE,CATEGORIA, FOTO) "
+                . "VALUES (:nome,:descricao,:preco,:custo,:quantidade,:categoria, :foto)");
         
         $stmt->bindValue(':nome', $this->getNome());
         $stmt->bindValue(':descricao', $this->getDescricao());
@@ -78,8 +89,12 @@ class ProdutoModel extends Model {
         $stmt->bindValue(':custo', $this->getCusto());
         $stmt->bindValue(':quantidade', $this->getQuantidade());
         $stmt->bindValue(':categoria', $this->getCategoria());
+        $stmt->bindValue(':foto', $this->getFoto());
         
-        return $stmt->execute();
+        $stmt->execute();
+                
+        // Retorna o ultimo ID cadastrado;
+        return $this->conexao->lastInsertId();
     }
     
 
@@ -104,15 +119,6 @@ class ProdutoModel extends Model {
         return $stmt->fetch(PDO::FETCH_ASSOC);
     }
     
-    public function selectByCodigo() {
-        $stmt = $this->conexao->prepare("SELECT * FROM produto where ID = :id");
-        $stmt->bindValue(':id', $this->id);
-        
-        $stmt->execute();
-
-        return $stmt->fetch(PDO::FETCH_ASSOC);
-    }
-    
     public function selectByCategoria() {
         $stmt = $this->conexao->prepare("SELECT * FROM produto where CATEGORIA = :categoria");
         $stmt->bindValue(':categoria', $this->getCategoria());
@@ -123,7 +129,9 @@ class ProdutoModel extends Model {
     }
     
     public function update() {
-        $stmt = $this->conexao->prepare("UPDATE produto SET NOME = :nome, DESCRICAO = :descricao, PRECO = :preco, CUSTO = :custo, QUANTIDADE = :quantidade, CATEGORIA = :categoria WHERE ID = :id ");
+        $stmt = $this->conexao->prepare("UPDATE produto "
+                . "SET NOME = :nome, DESCRICAO = :descricao, PRECO = :preco, CUSTO = :custo, QUANTIDADE = :quantidade, CATEGORIA = :categoria "
+                . "WHERE ID = :id ");
        
         $stmt->bindValue(':id', $this->getId());
         $stmt->bindValue(':nome', $this->getNome());
@@ -162,14 +170,14 @@ class ProdutoModel extends Model {
             return NULL;
         } 
                 
-        $prdutosIds = '';                
-        foreach (!$_SESSION['carrinho']['produtos'] as $produto => $prod){
+        $produtosIds = '';                
+        foreach ($_SESSION['carrinho']['produtos'] as $produto => $prod){
             $produtosIds .= $produto . ',';
         }
         
         $produtosIds = substr($produtosIds, 0, strlen($produtosIds)-1);
         
-        $sql = "SELECT * FROM PRODUTO WHERE ID IN {$produtosIds}";
+        $sql = "SELECT * FROM PRODUTO WHERE ID IN ({$produtosIds})";
         $stmt = $this->conexao->prepare($sql);
         $stmt->execute();
         

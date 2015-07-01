@@ -65,7 +65,7 @@
 				<div class="well">
 					<ul class="nav nav-list">
 						
-                                            
+                                            <li class="nav-header">Menu</li>
                                             <?php foreach ($categorias as $cat):
                                                 if($categoriaProdutos && $cat['ID'] == $categoriaProdutos[0]['CATEGORIA']):?>
                                                     <li class="active" >
@@ -77,7 +77,7 @@
 						</li>
                                                 <?php endif;?>
                                             <?php endforeach;?> 
-                                               
+                                            <li class="nav-header"><a href="index.php?controller=SiteController&action=carrinho">Carrinho de Compras</a></li>   
 					</ul>
 				</div>
 

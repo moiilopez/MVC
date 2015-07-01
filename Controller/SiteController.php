@@ -29,9 +29,12 @@ class SiteController {
     
     function produto(){
         
+         if (!isset($_GET['id'])) {
+            die('Falta o ID na URL');
+        }
         $produtoModel = new ProdutoModel();
         $produtoModel->setId($_GET['id']);
-        $produtos = $produtoModel->selectByCodigo();
+        $produtos = $produtoModel->selectById();
         
         $categoriaModel = new CategoriaModel();
         $categorias = $categoriaModel->select("id");
@@ -44,9 +47,12 @@ class SiteController {
         if(isset($_GET['id'])){
             $_SESSION['carrinho']['produtos'][$_GET['id']] = 1;
         }
-                    
+        
+        if (isset($_GET['idRemover'])) {
+            unset($_SESSION['carrinho']['produtos'][$_GET['idRemover']]);
+        }
+        
         $produtoModel = new ProdutoModel();
-        //$produtoModel->setId($_GET['id']);
         $produtos = $produtoModel->selectProdutosCarrinho();
         
         $categoriaModel = new CategoriaModel();
